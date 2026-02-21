@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- =====================================================
+         META Y CONFIGURACIÓN BÁSICA
+    ===================================================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Blog técnico sobre programación y tecnología. Aprende JavaScript moderno, Git con buenas prácticas y principios SOLID con ejemplos reales."
+    />
+    <meta
+      name="keywords"
+      content="programación, javascript, git, SOLID, desarrollo web, tecnología, blog técnico"
+    />
+    <meta name="author" content="Blog Tech Dev" />
+    <meta name="robots" content="index, follow" />
+    <title>Tech Blog Dev — Programación y Tecnología</title>
+    
+  </head>
+
+  <body>
+    <!-- =====================================================
+         CABECERA PRINCIPAL DEL SITIO
+    ===================================================== -->
+    <header>
+      <div class="header-inner">
+        <!-- Solo un h1 en toda la página -->
+        <h1>Tech Blog Dev</h1>
+        <p class="tagline">
+          Artículos sobre programación, buenas prácticas y tecnología moderna
+        </p>
+      </div>
+    </header>
+
+    <!-- =====================================================
+         BARRA DE NAVEGACIÓN PRINCIPAL
+    ===================================================== -->
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="#inicio" id="nav-inicio">Inicio</a></li>
+        <li>
+          <a href="#articulo-javascript" id="nav-javascript">JavaScript</a>
+        </li>
+        <li><a href="#articulo-git" id="nav-git">Git</a></li>
+        <li><a href="#articulo-solid" id="nav-solid">SOLID</a></li>
+        <li><a href="#recursos" id="nav-recursos">Recursos</a></li>
+        <li>
+          <a
+            href="https://developer.mozilla.org/es/"
+            id="nav-mdn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            MDN Web Docs ↗
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ===================================================== -->
+    <div class="container" id="inicio">
+      <!-- ================================================
+             SECCIÓN MAIN — Artículos del blog
+        ================================================ -->
+      <main>
+        <!-- ============================================
+                 ARTÍCULO 1: JavaScript Moderno
+            ============================================ -->
+        <article id="articulo-javascript" aria-labelledby="titulo-js">
+          <header>
+            <h2 id="titulo-js">
+              JavaScript Moderno: ES6+ que debes dominar en 2025
+            </h2>
+            <p class="article-meta">
+              <time datetime="2025-02-10">10 de febrero de 2025</time>
+              &nbsp;·&nbsp; Autor: <strong>Ana Gómez</strong>
+              &nbsp;·&nbsp;
+              <span class="tag">JavaScript</span>
+              <span class="tag">ES6+</span>
+              <span class="tag">Frontend</span>
+            </p>
+          </header>
+
+          <!-- Imagen 1 del artículo -->
+          <figure>
+            <img
+              src="images/javascript-moderno.webp"
+              alt="Pantalla con código JavaScript moderno mostrando arrow functions y destructuring"
+              width="800"
+              height="450"
+            />
+            <figcaption>
+              Las características modernas de JavaScript hacen el código más
+              limpio y expresivo.
+            </figcaption>
+          </figure>
+
+          <section aria-labelledby="js-intro">
+            <h3 id="js-intro">¿Por qué importa mantenerse actualizado?</h3>
+            <p>
+              JavaScript es el lenguaje de programación más utilizado del mundo,
+              presente tanto en el navegador como en el servidor gracias a
+              Node.js. Desde la especificación ES6 (ECMAScript 2015), el
+              lenguaje recibe nuevas características cada año que simplifican el
+              desarrollo y mejoran el rendimiento de las aplicaciones.
+            </p>
+            <p>
+              Ignorar las nuevas funcionalidades no solo hace tu código más
+              difícil de leer, sino que también te pone en desventaja frente a
+              otros desarrolladores. Dominar ES6+ es hoy un requisito básico en
+              cualquier proceso de selección de desarrolladores frontend o
+              fullstack.
+            </p>
+          </section>
+
+          <section aria-labelledby="js-funciones">
+            <h3 id="js-funciones">Características esenciales de ES6+</h3>
+            <p>
+              A continuación repasamos las funcionalidades más importantes que
+              debes incorporar en tu flujo de trabajo diario. Cada una resuelve
+              un problema concreto y reduce la cantidad de código que tienes que
+              escribir.
+            </p>
+
+            <!-- Lista 1: características ES6 -->
+            <ul>
+              <li>
+                <strong>Arrow functions</strong> — Sintaxis concisa y binding
+                léxico de <code>this</code>.
+              </li>
+              <li>
+                <strong>Destructuring</strong> — Extrae valores de arrays y
+                objetos en una sola línea.
+              </li>
+              <li>
+                <strong>Template literals</strong> — Interpolación de variables
+                con backticks (<code>`</code>).
+              </li>
+              <li>
+                <strong>Módulos ES (import/export)</strong> — Organización del
+                código sin CommonJS.
+              </li>
+              <li>
+                <strong>Async/Await</strong> — Manejo de promesas con sintaxis
+                síncrona y más legible.
+              </li>
+              <li>
+                <strong>Optional chaining (<code>?.</code>)</strong> — Acceso
+                seguro a propiedades anidadas.
+              </li>
+            </ul>
+
+            <h3 id="js-ejemplo">Ejemplo práctico: consumir una API REST</h3>
+            <p>
+              El siguiente fragmento muestra cómo usar <code>async/await</code>,
+              <code>fetch</code> y destructuring para obtener datos de una API
+              pública de forma clara y sin anidar llamadas:
+            </p>
+            <pre><code>// Obtener información de un usuario desde una API REST
+async function obtenerUsuario(id) {
+    try {
+        const respuesta = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+        if (!respuesta.ok) {
+            throw new Error(`Error HTTP: ${respuesta.status}`);
+        }
+
+        const { name, email, address: { city } } = await respuesta.json();
+
+        console.log(`Nombre: ${name} | Email: ${email} | Ciudad: ${city}`);
+    } catch (error) {
+        console.error('Ocurrió un error:', error.message);
+    }
+}
+
+obtenerUsuario(1);</code></pre>
+            <p>
+              Nota cómo el destructuring con renombrado (<code
+                >address: { city }</code
+              >) extrae directamente la ciudad del objeto anidado en una sola
+              operación. Este patrón reduce significativamente el ruido
+              sintáctico en comparación con el enfoque callbacks.
+            </p>
+          </section>
+
+          <section aria-labelledby="js-recursos">
+            <h3 id="js-recursos">Recursos recomendados</h3>
+            <p>
+              Para profundizar en JavaScript moderno, puedes revisar la
+              documentación oficial en
+              <a
+                href="https://developer.mozilla.org/es/docs/Web/JavaScript"
+                id="link-mdn-js"
+                target="_blank"
+                rel="noopener noreferrer"
+                >MDN Web Docs — JavaScript</a
+              >
+              y la especificación completa en
+              <a
+                href="https://tc39.es/ecma262/"
+                id="link-tc39"
+                target="_blank"
+                rel="noopener noreferrer"
+                >TC39 — ECMAScript Specification</a
+              >.
+            </p>
+          </section>
+        </article>
+
+        <!-- ============================================
+                 ARTÍCULO 2: Git y buenas prácticas
+            ============================================ -->
+        <article id="articulo-git" aria-labelledby="titulo-git">
+          <header>
+            <h2 id="titulo-git">
+              Git Avanzado: flujos de trabajo y buenas prácticas
+            </h2>
+            <p class="article-meta">
+              <time datetime="2025-02-14">14 de febrero de 2025</time>
+              &nbsp;·&nbsp; Autor: <strong>Carlos Méndez</strong>
+              &nbsp;·&nbsp;
+              <span class="tag">Git</span>
+              <span class="tag">DevOps</span>
+              <span class="tag">Colaboración</span>
+            </p>
+          </header>
+
+          <!-- Imagen 2 del artículo -->
+          <figure>
+            <img
+              src="images/git-workflow.webp"
+              alt="Diagrama de flujo de ramas en Git mostrando main, develop y feature branches"
+              width="800"
+              height="450"
+            />
+            <figcaption>
+              Un flujo de ramas bien definido evita conflictos y facilita la
+              integración continua.
+            </figcaption>
+          </figure>
+
+          <section aria-labelledby="git-intro">
+            <h3 id="git-intro">Git va más allá de commit y push</h3>
+            <p>
+              La mayor parte de los desarrolladores aprende Git de forma
+              autodidacta y termina usando solo un puñado de comandos básicos:
+              <code>add</code>, <code>commit</code> y <code>push</code>. Si bien
+              esto es suficiente para proyectos personales, en entornos de
+              equipo el desconocimiento de comandos avanzados genera conflictos
+              difíciles de resolver, historiales caóticos y pérdidas de tiempo
+              importantes.
+            </p>
+            <p>
+              Este artículo cubre los flujos de trabajo más adoptados en la
+              industria y los comandos que todo desarrollador profesional
+              debería manejar con confianza.
+            </p>
+          </section>
+
+          <section aria-labelledby="git-flujos">
+            <h3 id="git-flujos">Gitflow vs. Trunk-Based Development</h3>
+            <p>
+              Existen dos grandes filosofías para gestionar ramas en un
+              repositorio de equipo.
+              <strong>Gitflow</strong> propone ramas de larga duración
+              (<code>main</code>, <code>develop</code>, <code>release</code>,
+              <code>hotfix</code>) y es popular en proyectos con ciclos de
+              lanzamiento definidos. Por otro lado,
+              <strong>Trunk-Based Development</strong> apuesta por integrar
+              cambios frecuentes directamente en la rama principal, apoyándose
+              en feature flags para ocultar funcionalidades incompletas al
+              usuario final.
+            </p>
+            <p>
+              No existe una solución universal: la elección depende del tamaño
+              del equipo, la frecuencia de despliegues y el nivel de
+              automatización disponible. Lo importante es que el equipo acuerde
+              y documente las convenciones.
+            </p>
+          </section>
+
+          <section aria-labelledby="git-commits">
+            <h3 id="git-commits">
+              Conventional Commits: mensajes que aportan valor
+            </h3>
+            <p>
+              Un historial de commits bien escrito es la documentación más
+              actualizada de un proyecto. El estándar
+              <em>Conventional Commits</em> define una estructura simple para
+              los mensajes: <code>tipo(ámbito): descripción breve</code>. Los
+              tipos más comunes son:
+            </p>
+
+            <!-- Lista 2: tipos de commits -->
+            <ol>
+              <li>
+                <strong>feat</strong> — nueva funcionalidad para el usuario.
+              </li>
+              <li><strong>fix</strong> — corrección de un error.</li>
+              <li><strong>docs</strong> — cambios en documentación.</li>
+              <li><strong>style</strong> — formato, sin cambios en lógica.</li>
+              <li>
+                <strong>refactor</strong> — reestructuración de código sin
+                cambiar comportamiento.
+              </li>
+              <li>
+                <strong>test</strong> — adición o corrección de pruebas
+                automatizadas.
+              </li>
+              <li>
+                <strong>chore</strong> — tareas de mantenimiento del proyecto.
+              </li>
+            </ol>
+
+            <p>
+              Herramientas como <strong>commitlint</strong> y
+              <strong>Husky</strong> permiten validar automáticamente que cada
+              commit siga estas convenciones antes de ser aceptado en el
+              repositorio.
+            </p>
+          </section>
+
+          <section aria-labelledby="git-comandos">
+            <h3 id="git-comandos">Comandos avanzados que debes conocer</h3>
+            <p>
+              Estos comandos están disponibles directamente en
+              <a
+                href="https://git-scm.com/docs"
+                id="link-gitdocs"
+                target="_blank"
+                rel="noopener noreferrer"
+                >la documentación oficial de Git</a
+              >
+              y son fundamentales para el trabajo en equipo:
+            </p>
+            <pre><code># Rebase interactivo: reorganizar, combinar o editar commits recientes
+git rebase -i HEAD~5
+
+# Cherry-pick: integrar un commit específico de otra rama
+git cherry-pick &lt;hash-del-commit&gt;
+
+# Stash: guardar cambios sin realizar un commit
+git stash push -m "trabajo en progreso: nueva validación"
+
+# Bisect: encontrar el commit que introdujo un bug
+git bisect start
+git bisect bad HEAD
+git bisect good v2.0.0</code></pre>
+          </section>
+        </article>
+
+        <!-- ============================================
+                 ARTÍCULO 3: Principios SOLID
+            ============================================ -->
+        <article id="articulo-solid" aria-labelledby="titulo-solid">
+          <header>
+            <h2 id="titulo-solid">
+              Principios SOLID: escribe código que resista el tiempo
+            </h2>
+            <p class="article-meta">
+              <time datetime="2025-02-18">18 de febrero de 2025</time>
+              &nbsp;·&nbsp; Autor: <strong>Laura Torres</strong>
+              &nbsp;·&nbsp;
+              <span class="tag">SOLID</span>
+              <span class="tag">Arquitectura</span>
+              <span class="tag">Python</span>
+            </p>
+          </header>
+
+          <!-- Imagen 3 del artículo -->
+          <figure>
+            <img
+              src="images/solid-principles.webp"
+              alt="Diagrama con los cinco principios SOLID: SRP, OCP, LSP, ISP y DIP sobre fondo azul oscuro"
+              width="800"
+              height="450"
+            />
+            <figcaption>
+              Los principios SOLID son la base de cualquier diseño de software
+              mantenible y escalable.
+            </figcaption>
+          </figure>
+
+          <section aria-labelledby="solid-intro">
+            <h3 id="solid-intro">¿Qué son los principios SOLID?</h3>
+            <p>
+              SOLID es un acrónimo acuñado por Robert C. Martin ("Uncle Bob")
+              que agrupa cinco principios de diseño orientado a objetos cuya
+              aplicación produce código más legible, mantenible y extensible.
+              Aunque fueron formulados en el contexto de lenguajes como Java y
+              C++, son igualmente aplicables en Python, TypeScript y cualquier
+              lenguaje que soporte programación orientada a objetos.
+            </p>
+            <p>
+              Es importante entender que SOLID no es un conjunto de reglas
+              rígidas, sino guidelines que ayudan a tomar mejores decisiones de
+              diseño. Aplicarlos de forma dogmática puede llevar a
+              sobre-ingeniería; la clave está en encontrar el balance correcto
+              según el tamaño y la longevidad del proyecto.
+            </p>
+          </section>
+
+          <section aria-labelledby="solid-principios">
+            <h3 id="solid-principios">Los cinco principios</h3>
+            <p>
+              Cada letra del acrónimo corresponde a un principio independiente.
+              A continuación se describe cada uno con un ejemplo concreto en
+              Python:
+            </p>
+
+            <!-- Lista 3: Los principios SOLID -->
+            <ul>
+              <li>
+                <strong>S — Single Responsibility Principle (SRP)</strong>: Una
+                clase debe tener una sola razón para cambiar. Si una clase
+                gestiona usuarios y también envía correos electrónicos, tiene
+                dos responsabilidades que deben separarse.
+              </li>
+              <li>
+                <strong>O — Open/Closed Principle (OCP)</strong>: Las entidades
+                de software deben estar abiertas para su extensión, pero
+                cerradas para su modificación. Usa herencia o composición para
+                añadir comportamiento sin tocar el código existente.
+              </li>
+              <li>
+                <strong>L — Liskov Substitution Principle (LSP)</strong>: Los
+                objetos de una subclase deben poder sustituir a los de su
+                superclase sin alterar el comportamiento esperado del programa.
+              </li>
+              <li>
+                <strong>I — Interface Segregation Principle (ISP)</strong>:
+                Ninguna clase debe verse obligada a implementar interfaces que
+                no utiliza. Prefiere interfaces pequeñas y específicas sobre
+                interfaces grandes y genéricas.
+              </li>
+              <li>
+                <strong>D — Dependency Inversion Principle (DIP)</strong>: Los
+                módulos de alto nivel no deben depender de módulos de bajo
+                nivel; ambos deben depender de abstracciones. Las abstracciones
+                no deben depender de los detalles; los detalles deben depender
+                de las abstracciones.
+              </li>
+            </ul>
+
+            <h3 id="solid-ejemplo">Ejemplo: SRP en Python</h3>
+            <p>
+              El siguiente ejemplo muestra cómo refactorizar una clase que viola
+              el SRP:
+            </p>
+            <pre><code># ❌ Violación del SRP: la clase hace demasiado
+class UsuarioManager:
+    def guardar_en_base_de_datos(self, usuario): ...
+    def enviar_email_bienvenida(self, usuario): ...
+    def generar_reporte_pdf(self, usuario): ...
+
+# ✅ Aplicando SRP: cada clase tiene una sola responsabilidad
+class UsuarioRepositorio:
+    def guardar(self, usuario): ...
+
+class ServicioEmail:
+    def enviar_bienvenida(self, usuario): ...
+
+class GeneradorReporte:
+    def generar_pdf(self, usuario): ...</code></pre>
+
+            <p>
+              Para conocer más sobre principios de diseño, consulta el libro
+              <a
+                href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"
+                id="link-clean-code"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Clean Code</a
+              >
+              de Robert C. Martin, o el artículo de
+              <a
+                href="https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design"
+                id="link-solid-do"
+                target="_blank"
+                rel="noopener noreferrer"
+                >DigitalOcean sobre SOLID</a
+              >.
+            </p>
+          </section>
+        </article>
+      </main>
+      <!-- fin main -->
+
+      <!-- ================================================
+             ASIDE — Barra lateral con información adicional
+        ================================================ -->
+      <aside aria-label="Barra lateral">
+        <h2>Recursos del blog</h2>
+
+        <!-- Sección de artículos recientes -->
+        <section aria-labelledby="sidebar-recientes" id="recursos">
+          <h3 id="sidebar-recientes">Artículos Recientes</h3>
+          <ul>
+            <li>
+              <a href="#articulo-javascript" id="aside-link-js"
+                >JavaScript Moderno: ES6+</a
+              >
+            </li>
+            <li>
+              <a href="#articulo-git" id="aside-link-git"
+                >Git Avanzado y Buenas Prácticas</a
+              >
+            </li>
+            <li>
+              <a href="#articulo-solid" id="aside-link-solid"
+                >Principios SOLID</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <!-- Sección de categorías -->
+        <section aria-labelledby="sidebar-categorias">
+          <h3 id="sidebar-categorias">Categorías</h3>
+          <ul>
+            <li>Frontend (1)</li>
+            <li>DevOps (1)</li>
+            <li>Arquitectura (1)</li>
+            <li>Python (1)</li>
+            <li>JavaScript (1)</li>
+          </ul>
+        </section>
+
+        <!-- Sección de enlaces externos útiles -->
+        <section aria-labelledby="sidebar-enlaces">
+          <h3 id="sidebar-enlaces">Enlaces Útiles</h3>
+          <ul>
+            <li>
+              <a
+                href="https://github.com/"
+                id="link-github"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://stackoverflow.com/"
+                id="link-stackoverflow"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Stack Overflow
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://css-tricks.com/"
+                id="link-csstricks"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CSS-Tricks
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Sección sobre el blog -->
+        <section aria-labelledby="sidebar-sobre">
+          <h3 id="sidebar-sobre">Sobre el Blog</h3>
+          <p>
+            Tech Blog Dev publica artículos sobre programación, buenas prácticas
+            y tendencias tecnológicas escritos por desarrolladores en activo.
+            Todo el contenido es original y revisado por pares.
+          </p>
+        </section>
+      </aside>
+      <!-- fin aside -->
+    </div>
+    <!-- fin .container -->
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+    ===================================================== -->
+    <footer>
+      <p>
+        &copy; 2025 <strong>Tech Blog Dev</strong>. Hecho con HTML5 semántico.
+        &nbsp;|&nbsp;
+        <a
+          href="https://validator.w3.org/"
+          id="link-w3c"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Validado con W3C</a
+        >
+      </p>
+      <p>
+        Los artículos están bajo licencia
+        <a
+          href="https://creativecommons.org/licenses/by/4.0/"
+          id="link-cc"
+          target="_blank"
+          rel="noopener noreferrer"
+          >CC BY 4.0</a
+        >.
+      </p>
+    </footer>
+  </body>
+</html>
